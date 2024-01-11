@@ -1,0 +1,53 @@
+body {
+    background-color: rgb(180, 238, 238);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: "Courier New", monospace;
+}
+
+.btn {
+    width: 120px;
+    height: 40px;
+    font-family: "Courier New", monospace;
+    font-size: 17px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.select {
+    width: 200px; /* Adjust the width as needed */
+    height: 30px; /* Adjust the height as needed */
+    font-size: 16px; /* Adjust the font size as needed */
+    padding: 5px; /* Adjust the padding as needed */
+    border: 1px solid #ccc; /* Add a border as desired */
+    border-radius: 4px; /* Add border radius as desired */
+    background-color: #fff; /* Set the background color */
+    color: #000; /* Set the text color */
+    display: inline-block;
+    font-family: "Courier New", monospace;
+    font-size: 14px;
+    padding-left:13px;
+    align-items: center;
+}
+
+#input {
+    width: 450px;
+    height: 200px;
+    font-size: 30px;
+}
+
+#art {
+    overflow-x: auto; 
+    border: 4px solid #da486d;
+    width: 500px;
+    height: 250px;
+    background-color: beige;
+
+}
+
+img {
+    width: 450px;
+    height: 450px;
+}

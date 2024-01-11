@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ASCII-ART</title>
+  <link rel="stylesheet" href="/template/stylesheet.css">
+</head>
+<body>
+  <div id="box">
+    <div class="logo">
+      <h1>ASCII ART GENERATOR</h1>
+    </div>
+
+<form id="req">
+ 
+  <textarea type="text" id="input" name="input" maxlength="20000"></textarea><br>
+  <h3>Choose the color you like</h3> <input type="color" id="color-selector" name="color">
+  <br> <br>
+    <span id="letters-count"></span><br>
+    <select id="file-type" name="file" class="select">
+      <option value="Word">Word</option>
+      <option value="Plain Text">Plain Text</option>
+      <option value="Rich Text Format">Rich Text Format</option>
+      <option value="Markdown">Markdown</option>
+  </select>
+    
+    <select id="font-selector" name="font" class="select">
+      <option value="standard">Standard</option>
+      <option value="thinkertoy">Thinkertoy</option>
+      <option value="shadow">Shadow</option>
+    </select>
+    <br><br>
+    <input class="btn" type="submit" value="Submit">
+    <input type="submit" class="btn" value="Download">
+  </form>
+  <pre id="art"></pre>
+</div>
+<script defer>
+
+
+document.addEventListener("click", function() {
+    var audio = document.getElementById("background-audio");
+    audio.play();
+  });
+
+  const textarea = document.getElementById("input");
+  const lettersCount = document.getElementById("letters-count");
+
+  textarea.addEventListener("keyup", () => {
+    const text = textarea.value;
+    const lettersCountNumber = text.length;
+    lettersCount.textContent = "letters count: " + lettersCountNumber + "/20000";
+  });
+
+  document.getElementById('req').addEventListener('submit', function(event) {
+
+    var submitButtonValue = event.submitter.value;
+  console.log('Submit Button Value:', submitButtonValue);
+
+  event.preventDefault(); // Prevent the form from submitting normally
+  var formData = new FormData(this);
+  if (formData.get('input') === ""){
+    console.log('There is no input value');
+  } else {
+    // Get the form data
+    
+
+    // Convert form data to JSON object
+    var jsonObject = {};
+    for (var entry of formData.entries()) {
+      jsonObject[entry[0]] = entry[1];
+    }
+    
+    // Send the JSON data to the Go server
+    fetch('/ascii-art', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(jsonObject)
+    })
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(data) {
+      canvas = document.getElementById('art')
+      canvas.innerHTML = "";
+      canvas.innerHTML = data.art;    
+      canvas.style.color = formData.get("color");
+    })
+    .catch(function(error) {
+      console.error('Error:', error);
+    });
+  }
+  if (submitButtonValue === 'Download') {
+     window.location.href = '/download';
+  }
+});
+
+
+</script>
+</body>
+</html>
+
+
+
+
+  

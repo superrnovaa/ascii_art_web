@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Error</title>
+    <link rel="stylesheet" href="/template/stylesheet.css">
+</head>
+<body>
+    <h1>DON'T MESS WITH OUR WEBSITE!!!!</h1>
+    
+    <img  src="/template/angrycat.png" alt="Angry cat">
+
+    <button id="backButton" class="btn" type="button">I am Sorry</button>
+    <script>
+    
+    var backButton = document.getElementById("backButton");
+
+    backButton.addEventListener("click", function() {
+      window.history.back();
+    })
+
+    </script>
+</body>
+</html>
